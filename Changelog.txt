@@ -1,0 +1,63 @@
+*****************
+v0.6 - 2014.
+*****************
+
+* TODO-BUG: al terminar get_series, se vuelve a lanzar la tarea??
+
+* TODO-BUG: parece que actualizar a XBMC 13.2 build de 17 de agosto rompe cosas. Una actualización previa, a 13.2 beta no parecía dar problemas.
+
+*****************
+v0.5 - 2014.09.04
+*****************
+- XBMC (jun 11 2014)
+
+- Desactivada opción de actualización automática de RASPBMC, para evitar bugs de versiones beta o incompatibilidad con algunos de los plugins. Para reactivarlo y actualizar de forma automática: PROGRAMS - Raspbmc Settings (abajo) - System Config. - Keep Raspbmc updated. Después reiniciar. Si no se puede hacer de forma manual por ssh: http://wiki.xbmc.org/index.php?title=OSMC#Updating_Raspbmc
+
+- Añadido add-on: XBMC File Cleaner. Limpia videos marcados como vistos. Buena opción para eliminar lo que se ve con el tablet (u otro dispositivo) y queda marcado como visto gracias a Trakt. Configurarlo o desactivarlo si se quieren mantener películas/capítulos vistos.
+
+- Cambiado origen para filtrado del plugin de discover en configTVShows:
+custom: Following
+Cuando se ven todos los capítulos de una serie, trakt lo elimina de watchlist, así que hay que usar listas. Ahora tengo: Following, FollowingSpanish y en watchlist las que algún día quiero ver.
+
+- Modificado configTVShows.yml:
+body: "{{ series_name }} {{ series_id }} - {{ trakt_ep_name }}"
+Daba error recuperar de trakt (WARNING  pushbullet    get_series      Problem rendering 'body': (UndefinedError) 'trakt_series_name' is undefined)
+
+*****************
+v0.4 - 2014.07.14
+*****************
+
+- Cargar por defecto todos los torrents (show all) en lugar de los que están descargando (show downloading) en la web UI de transmission. Modificar "shift.js": https://github.com/billitch/Shift/commit/c53effce7550f6acf26da7df1c7d46b88b4a32bc
+
+- Cambiado config.yml de Flexget a: http://pastebin.com/sBn5W4vf
+
+- Separados flexget configs de series y movies. Ahora se lanza una vez al día la búsqueda de películas (a las 0:00) y cada 3 horas la de series (entre las 3:00 y las 15:00).
+
+- Mandar notificación al móvil mediante Pushbullet cada vez que comience una descarga: http://flexget.com/wiki/Plugins/pushbullet (user: API_KEY, pass: empty) 
+
+- Transmission no cargaba los torrents de la carpeta monitorizada (tema de permisos por ser usb NTFS?). Reiniciando transmission-daemon sí que los carga. Añadida tarea a cron:
+#restart Transmission daemon at startup to solve auto-adding of torrents in watch-dir
+@reboot /bin/sleep 120; /etc/init.d/transmission-daemon restart
+
+*****************
+v0.3 - 2014.06.01
+*****************
+- Paso a XBMC 13.1
+- Make TRANSMISSION_WEB_HOME env var persistent to load Shift instead of Transmission's default Web UI: /etc/init.d/transmission-daemon
+
+*****************
+V0.2
+*****************
+- XBMC 13.1-Beta2
+- Añadido btsync (monitorizando carpeta /media/usb0/Downloads/torrents). Está en raiz de usuario "pi"
+- Sistema de descarga automática de series con showrss, trakt.tv y transmission
+- Activada opción en XBMC para soporte de tareas programadas (cron)
+- Plugin de descarga automática de subtítulos. Servicios instalados: opensubtitles.org y subtitulos.es
+- Activada opción en XBMC para borrados de ficheros
+- Añadido Shift. WebUI para transmission que permite entre otras cosas seleccionar el path donde descargar nuevos torrents añadidos a mano. Más info: https://forum.transmissionbt.com/viewtopic.php?t=12555
+
+*****************
+V0.1
+*****************
+- XBMC ¿12?
+- Soporte para dongle wifi tp-link wn725n

@@ -1,0 +1,44 @@
+/* general style overrides */
+h6                  { margin-bottom: 1em !important; }
+body                { padding-top: 75px !important; }
+@media (max-width: 768px) {
+body                { padding-top: 0px !important; }
+
+}
+/* twitter homepage boxout */
+ul.tweets           { margin: 0px; padding: 0px; list-style-type: none; }
+ul.tweets > li        { position: relative; padding: 1em 0 0 48px; margin: 1em 0 0 0; border-top: dotted 1px #40c0e0; }
+ul.tweets > li img    { position: absolute; left: 0; top: 1em; width: 32px; height: 32px; }
+
+ul.tweets a			{ color: #40c0e0}
+
+/* forum homepage boxout */
+ul.posts            { margin: 0px; padding: 0px; list-style-type: none; overflow: hidden; }
+ul.posts > li         { position: relative; padding: 1em 0 0 0; border-top: dotted 1px #60a000; }
+
+ul.posts a			{ color: #609000; }
+
+/* archives homepage boxout */
+ul.archives, ul.archives ul            { margin: 0px; padding: 0px; list-style-type: none; overflow: hidden; }
+ul.archives > li         { position: relative; padding: 1em 0 0 0; border-top: dotted 1px #a1002e; }
+ul.archives > li li         { display: inline-block; padding: 0 1em 0 0; margin: 0; }
+
+ul.archives a			{ color: #8f0021; }
+
+
+.aligncenter {
+clear: both;
+display: block;
+margin-left: auto !important;
+margin-right: auto !important;
+}
+
+img[class*="align"], img[class*="wp-image-"], #content .gallery .gallery-icon img {
+border: 1px solid #DDD;
+padding: 6px;
+margin: 1em;
+}
+
+.thumbnails > li {
+	text-align: center;
+}
