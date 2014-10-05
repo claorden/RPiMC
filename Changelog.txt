@@ -1,6 +1,9 @@
 *****************
 v0.6 - 2014.
 *****************
+- Añadido en ConfigMovies.yml regexp para rechazar: HDCAM, CAM, CAMRip, HDTS.
+
+- Interfaz BTSync: http://xxx.xxx.xxx.xxx:8888/gui/
 
 * TODO-BUG: al terminar get_series, se vuelve a lanzar la tarea??
 

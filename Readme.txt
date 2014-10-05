@@ -3,10 +3,10 @@
 #Copiar imagen
 
 #Dar permisos de escritura sobre usb y copiar estructura
-chmod -R 777 /media/usb0/Downloads 
-chmod -R 777 '/media/usb0/TV Shows'
-chmod -R 777 /media/usb0/Movies 
-chmod -R 777 /media/usb0/Music
+chmod -R 777 /media/RPi\ HDD/Downloads 
+chmod -R 777 '/media/RPi\ HDD/TV Shows'
+chmod -R 777 /media/RPi\ HDD/Movies 
+chmod -R 777 /media/RPi\ HDD/Music
 
 #Solucionar problemas de permisos de transmission sobre usb (por ntfs)
 sudo nano /etc/init.d/transmission-daemon
@@ -25,7 +25,7 @@ sudo crontab -e
 @reboot /bin/sleep 120; /etc/init.d/transmission-daemon restart
 
 #Execute flexget with TVShows config, every 3 hours, between 3:00 and 15:00
-0 3,6,9,12,15 * * * /usr/local/bin/flexget -c "/media/RPi HDD/Downloads/flexget/configTVShows.$
+0 3,6,9,12,15 * * * /usr/local/bin/flexget -c "/media/RPi HDD/Downloads/flexget/configTVShows." execute
 
 #Execute flexget with Movies config, every day at midnight
 0 0 * * * /usr/local/bin/flexget -c "/media/RPi HDD/Downloads/flexget/configMovies.yml" execute
@@ -34,4 +34,4 @@ sudo crontab -e
 ++++++++++++++++++++
 BACKUP SDCARD en USB
 ++++++++++++++++++++
-sudo dd if=/dev/mmcblk0p2 of=/media/RPi\ HDD/Backups/2014.06.01\ RaspBMC.clg\ v0.4.img bs=1M
+sudo dd if=/dev/mmcblk0p2 of=/media/RPi\ HDD/Backups/2014.06.01\ RaspBMC.clg\ v0.X.img bs=1M
