@@ -1,18 +1,27 @@
 *****************
-v0.6 - 2014.
+v0.7 - 2014.
 *****************
+* TODO-BUG: al terminar get_series, se vuelve a lanzar la tarea??
+
+* TODO-BUG: parece que actualizar a XBMC 13.2 build de 17 de agosto rompe cosas. Una actualización previa, a 13.2 beta no parecía dar problemas. XBMC 13.2 (oct 31 2014) Da problemas transmission
+
+*****************
+v0.6 - 2014.12.01
+*****************
+- Modificados config.yml para que lleguen las notificaciones de Pushbullet solo a smartphone: https://api.pushbullet.com/v2/devices
+
+- Cambiado en configTVShows.yml la recuperación de nombre de episodio para pushbullet: de "trakt_ep_name" (not defined) a "tvdb_ep_name".
+
+- Upgrade Flexget to 1.2.228. Si no dejaba de funcionar el plugin de kat.
+
 - Añadido en ConfigMovies.yml regexp para rechazar: HDCAM, CAM, CAMRip, HDTS.
 
 - Interfaz BTSync: http://xxx.xxx.xxx.xxx:8888/gui/
 
-* TODO-BUG: al terminar get_series, se vuelve a lanzar la tarea??
-
-* TODO-BUG: parece que actualizar a XBMC 13.2 build de 17 de agosto rompe cosas. Una actualización previa, a 13.2 beta no parecía dar problemas.
-
 *****************
 v0.5 - 2014.09.04
 *****************
-- XBMC (jun 11 2014)
+- XBMC 13.1 (jun 11 2014)
 
 - Desactivada opción de actualización automática de RASPBMC, para evitar bugs de versiones beta o incompatibilidad con algunos de los plugins. Para reactivarlo y actualizar de forma automática: PROGRAMS - Raspbmc Settings (abajo) - System Config. - Keep Raspbmc updated. Después reiniciar. Si no se puede hacer de forma manual por ssh: http://wiki.xbmc.org/index.php?title=OSMC#Updating_Raspbmc
 

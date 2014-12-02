@@ -4,8 +4,8 @@
 
 #Dar permisos de escritura sobre usb y copiar estructura
 chmod -R 777 /media/RPi\ HDD/Downloads 
-chmod -R 777 '/media/RPi\ HDD/TV Shows'
-chmod -R 777 /media/RPi\ HDD/Movies 
+chmod -R 777 /media/RPi\ HDD/TV\ Shows
+chmod -R 777 /media/RPi\ HDD/Movies
 chmod -R 777 /media/RPi\ HDD/Music
 
 #Solucionar problemas de permisos de transmission sobre usb (por ntfs)
@@ -16,7 +16,7 @@ USER=debian-transmission -> USER=pi
 #Configurar opciones de transmission
 sudo nano /etc/transmission-daemon/settings.json
 
-#Editar config.yml de Flexget y meter datos de acceso
+#Editar configs.yml de Flexget y meter datos de acceso
 
 #Añadir tareas en "cron" con root (no sé si es por usar usb ntfs, pero si no es en root da error de ¿python? ¿flexget?)
 sudo crontab -e
@@ -25,13 +25,7 @@ sudo crontab -e
 @reboot /bin/sleep 120; /etc/init.d/transmission-daemon restart
 
 #Execute flexget with TVShows config, every 3 hours, between 3:00 and 15:00
-0 3,6,9,12,15 * * * /usr/local/bin/flexget -c "/media/RPi HDD/Downloads/flexget/configTVShows." execute
+0 3,6,9,12,15 * * * /usr/local/bin/flexget -c "/media/RPi HDD/Downloads/flexget/configTVShows.yml" execute
 
 #Execute flexget with Movies config, every day at midnight
 0 0 * * * /usr/local/bin/flexget -c "/media/RPi HDD/Downloads/flexget/configMovies.yml" execute
-
-
-++++++++++++++++++++
-BACKUP SDCARD en USB
-++++++++++++++++++++
-sudo dd if=/dev/mmcblk0p2 of=/media/RPi\ HDD/Backups/2014.06.01\ RaspBMC.clg\ v0.X.img bs=1M

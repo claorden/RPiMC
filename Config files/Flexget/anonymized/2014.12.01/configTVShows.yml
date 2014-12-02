@@ -1,0 +1,66 @@
+templates:
+  global:
+    torrent_alive: yes #number of seeders needed to accept
+  transmit-series:
+    transmission:
+      host: localhost
+      port: 9091
+      username: XXXXXXXX
+      password: "XXXXXXXX"
+      path: /media/RPi HDD/TV Shows/{{series_name}}
+#          path: /media/RPi HDD/TV Shows/{{series_name}}/S{{"%02d"|format(series_season)}}
+
+tasks:
+  get_series:
+    priority: 1
+    exists_series:
+      - /media/RPi HDD/TV Shows
+    regexp:
+      reject:
+        - FASTSUB #French
+        - VOSTFR #French
+        - Subtitulado #Spanish
+    content_filter:
+      reject:
+        - '*.rar' #Damn you satan!
+        - '*.zip' #Damn you satan!
+        - '*.avi' #Uhgg Jak!
+    discover:
+      what:
+        - trakt_list:
+            username: XXXXXXXX
+            password: "XXXXXXXX"
+            api_key: XXXXXXXX
+            custom: Following
+      from:
+        - kat:
+            category: tv
+            verified: yes
+    configure_series:
+      from:
+        trakt_list:
+          username: XXXXXXXX
+          password: "XXXXXXXX"
+          api_key: XXXXXXXX
+          custom: Following
+      settings:
+        target: 720p
+    trakt_watched_lookup:
+      username: XXXXXXXX
+      password: "XXXXXXXX"
+      api_key: XXXXXXXX
+    trakt_collected_lookup:
+      username: XXXXXXXX
+      password: "XXXXXXXX"
+      api_key: XXXXXXXX
+    if:
+      - trakt_watched: reject
+      - trakt_in_collection: reject
+    set:
+      content_filename: "{{ series_name }} - {{ series_id }} ({{ quality|upper }})"
+    template: transmit-series
+    pushbullet:
+      apikey: XXXXXXXX
+      device: XXXXXXXX
+      title: "TV Show downloading"
+      body: "{{ series_name }} {{ series_id }} - {{ tvdb_ep_name }}"

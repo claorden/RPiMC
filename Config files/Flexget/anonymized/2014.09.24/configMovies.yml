@@ -1,0 +1,66 @@
+templates:
+  global:
+    torrent_alive: yes #number of seeders needed to accept
+  transmit-movies:
+    transmission:
+      host: localhost
+      port: 9091
+      username: XXXXXXXX
+      password: "XXXXXXXX"
+      path: /media/RPi HDD/Movies
+  download-movie:
+    discover:
+      what:
+        - emit_movie_queue: yes
+      from:
+        - kat:
+            category: movies
+            verified: yes
+    regexp:
+      reject:
+        - HDCAM
+        - CAM
+        - CAMRip
+        - HDTS
+    movie_queue: yes
+    set:
+      content_filename: "{{ imdb_name|replace('/', '_')|replace(':', ' -') }} ({{ imdb_year }}) - {{ quality }}"
+    template: transmit-movies
+    pushbullet:
+      apikey: XXXXXXXX
+      device: XXXXXXXX
+      title: "New movie downloading"
+      body: "{{ imdb_name }} -  {{ imdb_year }} - {{ quality }}"
+    trakt_remove:
+      username: XXXXXXXX
+      password: "XXXXXXXX"
+      api_key: XXXXXXXX
+      list: watchlist
+
+tasks:
+  fill_movie_queue:
+    priority: 1
+    trakt_list:
+      username: XXXXXXXX
+      password: "XXXXXXXX"
+      api_key: XXXXXXXX
+      movies: watchlist
+    queue_movies: yes
+    accept_all: yes
+    clean_transmission:
+      host: localhost
+      port: 9091
+      username: XXXXXXXX
+      password: "XXXXXXXX"
+      min_ratio: 1
+
+  get_movies_1080p:
+    priority: 2
+    quality: 1080p
+    template: download-movie
+
+  get_movies_720p:
+    priority: 3
+    quality: 720p
+    template: download-movie
+    delay: 7 days #wait 7 days for a 1080p movie before downloading a 720p
