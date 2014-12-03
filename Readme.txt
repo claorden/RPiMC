@@ -25,7 +25,7 @@ sudo crontab -e
 @reboot /bin/sleep 120; /etc/init.d/transmission-daemon restart
 
 #Execute flexget with TVShows config, every 3 hours, between 3:00 and 15:00
-0 3,6,9,12,15 * * * /usr/local/bin/flexget -c "/media/RPi HDD/Downloads/flexget/configTVShows.yml" execute
+0 3,6,9,12,15 * * * /usr/local/bin/flexget -c "/media/RPi HDD/Downloads/flexget/configTVShows.yml" execute --discover-now
 
 #Execute flexget with Movies config, every day at midnight
-0 0 * * * /usr/local/bin/flexget -c "/media/RPi HDD/Downloads/flexget/configMovies.yml" execute
+0 0 * * * /usr/local/bin/flexget -c "/media/RPi HDD/Downloads/flexget/configMovies.yml" execute --discover-now

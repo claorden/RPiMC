@@ -1,6 +1,10 @@
 *****************
 v0.7 - 2014.
 *****************
+- Añadido "--discover-now" a la ejecución de las tareas en cron para forzar descubrimiento de nuevos elementos.
+
+* TODO-BUG: Fallan descargas por: "warning kat Got bozo_exception (bad feed)"
+
 * TODO-BUG: al terminar get_series, se vuelve a lanzar la tarea??
 
 * TODO-BUG: parece que actualizar a XBMC 13.2 build de 17 de agosto rompe cosas. Una actualización previa, a 13.2 beta no parecía dar problemas. XBMC 13.2 (oct 31 2014) Da problemas transmission
